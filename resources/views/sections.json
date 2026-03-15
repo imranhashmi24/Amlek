@@ -1,0 +1,796 @@
+{
+    "breadcrumb": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Breadcrumb Section",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "1350x360"
+                }
+            }
+        }
+    },
+    "app_download": {
+        "builder": true,
+        "no_selection": false,
+        "name": "App Download",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "640x465"
+                },
+                "app_store": {
+                    "size": "180x65"
+                },
+                "google_play": {
+                    "size": "180x65"
+                }
+            },
+            "heading": "text",
+            "heading_ar": "text",
+            "subheading": "text",
+            "subheading_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic",
+            "app_store_link": "text",
+            "google_store_link": "text"
+        }
+    },
+    "add_property": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Add Property section",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "1440x360"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic",
+            "button_text": "text",
+            "button_text_ar": "text",
+            "button_url": "text"
+        }
+    },
+    "social_media": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Social Media Section",
+        "element": {
+            "name": "text",
+            "link": "text",
+            "icon": "icon",
+            "modal": true
+        }
+    },
+    "footer": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Footer Section",
+        "content": {
+            "address": "text",
+            "address_ar": "text",
+            "email": "text",
+            "mobile": "text"
+        }
+    },
+    "about_section": {
+        "builder": true,
+        "no_selection": false,
+        "name": "About Section",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "615x340"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic"
+        }
+    },
+    "blog": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Blog Section",
+        "content": {
+            "title": "text",
+            "sub_title": "textarea-nic"
+        }
+    },
+    "service_section": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Service Section",
+        "content": {
+            "heading": "text",
+            "heading_ar": "text"
+        },
+        "element": {
+            "images": {
+                "image": {
+                    "size": "380x235"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "short_description": "textarea-nic",
+            "short_description_ar": "textarea-nic",
+            "button_url": "text",
+            "modal": false
+        }
+    },
+    "banner": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Banner Section",
+        "element": {
+            "images": {
+                "slider": {
+                    "size": "1350x360"
+                },
+                "slider_ar": {
+                    "size": "1350x360"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "modal": false
+        }
+    },
+
+    "offer_banner": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Offers to accept projects with their assets and liabilities",
+        "element": {
+            "images": {
+                "slider": {
+                    "size": "500x350"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "modal": false
+        }
+    },
+    "marketing_banner": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Marketing Banner",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "1900x250"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic"
+        }
+    },
+    "marketing_service": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Marketing Service",
+        "element": {
+            "images": {
+                "image": {
+                    "size": "270x210"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic",
+            "service_request_url": "text",
+            "modal": false
+        }
+    },
+    "finance_banner": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Finance Banner",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "1900x250"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic"
+        }
+    },
+    "finance_service": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Finance Service",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "615x340"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic",
+            "service_request_url": "text"
+        }
+    },
+    "evaluation_banner": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Evaluation Banner",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "1900x250"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic"
+        }
+    },
+    "evaluation_service": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Evaluation Service",
+        "element": {
+            "images": {
+                "image": {
+                    "size": "615x385"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic",
+            "service_request_url": "text",
+            "modal": false
+        }
+    },
+    "evaluation_plan": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Evaluation Plan",
+        "element": {
+            "images": {
+                "image": {
+                    "size": "80x80"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic",
+            "modal": false
+        }
+    },
+    "social_investment_banner": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Social Investment Banner",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "1900x250"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic"
+        }
+    },
+    "social_investment_service": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Social Investment Service",
+        "content": {
+            "short_description": "textarea-nic",
+            "short_description_ar": "textarea-nic"
+        },
+        "element": {
+            "title": "text",
+            "title_ar": "text",
+            "modal": true
+        }
+    },
+    "social_investment_sector": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Social Investment Sector",
+        "content": {
+            "heading": "text",
+            "heading_ar": "text"
+        },
+        "element": {
+            "images": {
+                "image": {
+                    "size": "310x210"
+                }
+            },
+            "sector_name": "text",
+            "sector_name_ar": "text",
+            "button_url": "text",
+            "modal": true
+        }
+    },
+    "auction_banner": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Auction Banner",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "1900x250"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic"
+        }
+    },
+    "auction_service": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Auction Service",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "615x410"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic"
+        }
+    },
+    "auction_methodology": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Auction Methodology",
+        "content": {
+            "heading": "text",
+            "heading_ar": "text"
+        },
+        "element": {
+            "methodology_name": "text",
+            "methodology_name_ar": "text",
+            "modal": true
+        }
+    },
+    "auction_platforms": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Auction Platforms",
+        "content": {
+            "heading": "text",
+            "heading_ar": "text"
+        },
+        "element": {
+            "images": {
+                "image": {
+                    "size": "190x80"
+                }
+            },
+            "modal": true
+        }
+    },
+    "property_search": {
+        "builder": true,
+        "no_selection": true,
+        "name": "property Search",
+        "content": {
+            "images": {
+                "background_image": {
+                    "size": "1900x250"
+                }
+            },
+            "title": "text",
+            "title_ar": "text"
+        }
+    },
+    "policy_pages": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Policy Pages",
+        "element": {
+            "title": "text",
+            "details": "textarea-nic",
+            "details_ar": "textarea-nic",
+            "modal": false
+        }
+    },
+    "promotion": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Promotion Slider",
+        "element": {
+            "images": {
+                "image": {
+                    "size": "500x350"
+                }
+            },
+            "short_description" : "textarea",
+            "short_description_ar" : "textarea",
+            "modal": false
+        }
+    },
+    "rehabilitation_empowerment": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Rehabilitation Empowerment",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "650x500"
+                }
+            },
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic"
+        }
+    },
+    "target_groups": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Target Groups",
+        "content": {
+            "head": "text",
+            "head_ar": "text"
+        },
+        "element": {
+            "images": {
+                "image": {
+                    "size": "60x60"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "modal": true
+        }
+    },
+    "partner_slider": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Partner Slider",
+        "content": {
+            "header": "text",
+            "header_ar": "text"
+        },
+        "element": {
+            "images": {
+                "background_image": {
+                    "size": "315x190"
+                },
+                "logo": {
+                    "size": "180x35"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "modal": false
+        }
+    },
+    "training_tracks": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Training Tracks",
+        "content": {
+            "header": "text",
+            "header_ar": "text",
+            "sub_header": "text",
+            "sub_header_ar": "text"
+        },
+        "element": {
+            "images": {
+                "image": {
+                    "size": "305x180"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "modal": true
+        }
+    },
+    "partners": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Partners",
+        "content": {
+            "header": "text",
+            "header_ar": "text"
+        },
+        "element": {
+            "images": {
+                "image": {
+                    "size": "160x100"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "modal": true
+        }
+    },
+    "acquired_skills": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Acquired skills",
+        "content": {
+            "images": {
+                "icon": {
+                    "size": "18x18"
+                }
+            },
+            "header": "text",
+            "header_ar": "text"
+        },
+        "element": {
+            "title": "text",
+            "title_ar": "text",
+            "modal": true
+        }
+    },
+    "target_sector": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Target Sector",
+        "content": {
+            "heading": "text",
+            "heading_ar": "text",
+            "sub_heading": "text",
+            "sub_heading_ar": "text"
+        },
+        "element": {
+            "images": {
+                "image": {
+                    "size": "305x180"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "modal": true
+        }
+    },
+    "program_duration": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Program Duration",
+        "content": {
+            "images": {
+                "icon": {
+                    "size": "18x18"
+                }
+            },
+            "header": "text",
+            "header_ar": "text"
+        },
+        "element": {
+            "title": "text",
+            "title_ar": "text",
+            "modal": true
+        }
+    },
+    "full_purchase": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Full Purchase Section",
+        "content": {
+            "heading": "text",
+            "heading_ar": "text"
+        }
+    },
+    "floor_plan": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Floor Plan",
+        "content": {
+            "header": "text",
+            "header_ar": "text"
+        },
+        "element": {
+            "images": {
+                "plan": {
+                    "size" : "315x180"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic",
+            "modal": false
+        }
+    },
+    "properties_requests": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Properties requests",
+        "content": {
+            "header": "text",
+            "header_ar": "text"
+        },
+        "element": {
+            "images": {
+                "image": {
+                    "size" : "315x180"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "modal": false
+        }
+    },
+    "event_type": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Event type",
+        "element": {
+            "title": "text",
+            "title_ar": "text",
+            "modal": true
+        }
+    },
+    "audience_type": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Audience type",
+        "element": {
+            "title": "text",
+            "title_ar": "text",
+            "modal": true
+        }
+    },
+    "event_sector": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Event sector",
+        "element": {
+            "title": "text",
+            "title_ar": "text",
+            "modal": true
+        }
+    },
+    "event_banner": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Event Banner",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "1900x250"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic"
+        }
+    },
+    "event_news_banner": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Event News Banner",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "1900x250"
+                }
+            },
+            "title": "text",
+            "title_ar": "text"
+        }
+    },
+    "ai_banner": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Ai Banner",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "1320x400"
+                }
+            },
+            "title": "text",
+            "title_ar": "text"
+        }
+    },
+     "foreign_ownership_banner": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Foreign Ownership Banner",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "1900x150"
+                }
+            },
+            "title": "text",
+            "title_ar": "text"
+        }
+    },
+    "foreign_property_development": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Foreign Property Development",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "645x350"
+                },
+                "image_2": {
+                    "size": "645x350"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "text",
+            "description_ar": "text"
+        }
+    },
+    "foreign_we_offer_you": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Foreign we offer you",
+        "content": {
+            "header": "text",
+            "header_ar": "text"
+        },
+        "element": {
+            "title": "text",
+            "title_ar": "text",
+            "description": "text",
+            "description_ar": "text",
+            "modal": true
+        }
+    },
+    "foreign_our_services": {
+        "builder": true,
+        "no_selection": true,
+        "name": "Foreign our services",
+        "content": {
+            "header": "text",
+            "header_ar": "text"
+        },
+        "element": {
+            "title": "text",
+            "title_ar": "text",
+            "description": "text",
+            "description_ar": "text",
+            "modal": true
+        }
+    },
+    "foreign_why_choose": {
+        "builder": true,
+        "no_selection": true,
+        "name": "foreign why choose",
+        "content": {
+            "images": {
+                "image": {
+                    "size": "511x400"
+                }
+            },
+            "header": "text",
+            "header_ar": "text"
+        },
+        "element": {
+            "title": "text",
+            "title_ar": "text",
+            "description": "text",
+            "description_ar": "text",
+            "modal": true
+        }
+    }
+}
