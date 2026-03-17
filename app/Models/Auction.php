@@ -32,6 +32,12 @@ class Auction extends Model
         return $this->belongsTo(Admin::class, 'admin_id', 'id');
     }
 
+
+    public function category()
+    {
+        return $this->belongsTo(AuctionCategory::class, 'category_id');
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_id');
@@ -50,6 +56,12 @@ class Auction extends Model
     public function properties()
     {
         return $this->hasMany(AuctionProject::class);
+    }
+
+
+    public function biddings()
+    {
+        return $this->hasMany(Bidding::class);
     }
 
 

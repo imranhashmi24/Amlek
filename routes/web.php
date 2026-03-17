@@ -78,7 +78,7 @@ Route::controller(WebController::class)->group(function () {
 
         Route::post('fav-store', 'fvtStore')->name('fvtStore');
 
-        Route::get('bidding-offer-request-page/{auction}/{property}', 'biddingOfferRequest')->name('bidding.request.page');
+        Route::get('bidding-offer-request-page/{auction}/{property?}', 'biddingOfferRequest')->name('bidding.request.page');
         Route::post('bidding-offer-request', 'biddingOfferSend')->name('bidding.request.send');
         
         //property Request

@@ -466,3 +466,18 @@ if(!function_exists('download_from_url')){
 }
 
 
+if (!function_exists('deleteFile')) {
+    function deleteFile($path)
+    {
+        try {
+            if ($path && file_exists($path)) {
+                unlink($path);
+                return true;
+            }
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        return false;
+    }
+}

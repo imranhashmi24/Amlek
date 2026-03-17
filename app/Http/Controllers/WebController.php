@@ -2,51 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use Carbon\Carbon;
-use App\Models\Blog;
-use App\Models\Form;
-use App\Models\Page;
-use App\Models\Country;
-use App\Models\Frontend;
-use App\Models\Language;
-use App\Models\Property;
 use App\Constants\Status;
-use App\Models\Subscriber;
-use App\Models\BusinessPost;
-use App\Models\PropertyType;
-use Illuminate\Http\Request;
-use App\Models\SupportTicket;
-use App\Models\FinanceRequest;
-use App\Models\ServiceRequest;
-use App\Models\SupportMessage;
-use App\Models\BusinessRequest;
-use App\Models\PropertyRequest;
-use App\Models\BusinessCategory;
-use App\Models\MarketingRequest;
-use App\Models\PromotionRequest;
 use App\Models\AdminNotification;
+use App\Models\AiService;
 use App\Models\AllCategory;
 use App\Models\AssetliabilitieRequest;
 use App\Models\Auction;
+use App\Models\AuctionCategory;
 use App\Models\AuctionFormRequest;
 use App\Models\Bidding;
+use App\Models\Blog;
+use App\Models\BusinessCategory;
+use App\Models\BusinessPost;
+use App\Models\BusinessRequest;
 use App\Models\City;
+use App\Models\Country;
 use App\Models\Event;
 use App\Models\EventAsk;
 use App\Models\EventNews;
+use App\Models\FinanceRequest;
+use App\Models\FloorPlanRequest;
+use App\Models\ForeignOwnershipRequest;
+use App\Models\Form;
+use App\Models\Frontend;
+use App\Models\Language;
+use App\Models\MarketingRequest;
+use App\Models\OportunityRequest;
+use App\Models\Page;
+use App\Models\PromotionRequest;
+use App\Models\Property;
 use App\Models\PropertyFormRequest;
+use App\Models\PropertyRequest;
 use App\Models\PropertyRequestSend;
+use App\Models\PropertyType;
+use App\Models\ServiceRequest;
 use App\Models\SocialInvestRequest;
+use App\Models\Subscriber;
+use App\Models\SupportMessage;
+use App\Models\SupportTicket;
+use Carbon\Carbon;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Excel;
-use App\Models\FloorPlanRequest;
-use App\Models\AiService;
-use App\Models\OportunityRequest;
-use App\Models\ForeignOwnershipRequest;
 
 class WebController extends Controller
 {
@@ -63,7 +64,11 @@ class WebController extends Controller
 
         $propertyTypes = PropertyType::Active()->get();
 
-        return view('web.home', compact('sections', 'propertyTypes', 'auctions'));
+        $categories = AuctionCategory::with(['auctions' => function($q) {
+            $q->latest()->limit(6); 
+        }])->get();
+
+        return view('web.home', compact('sections', 'propertyTypes', 'auctions', 'categories'));
     }
 
     public function contact()
@@ -167,8 +172,9 @@ class WebController extends Controller
         return view('web.social_investment', compact('sections', 'countries', 'propertyTypes'));
     }
 
-    public function auction()
+    public function auction(Request $request)
     {
+
         $sections = Page::where('slug', 'auctions-and-event')->first();
         return view('web.auctions_event', compact('sections'));
     }
@@ -731,68 +737,69 @@ class WebController extends Controller
 
 
 
-    public function auctions(Request $request)
+    public function auctions(Request $request, $slug = null)
     {
-        try{
+        try {
             $type = $request->type ?? 'all';
 
             $data['all'] = Auction::ifNotPending()->count();
-            $data['current']  = Auction::current()->count();
+            $data['current'] = Auction::current()->count();
             $data['upcoming'] = Auction::upcoming()->count();
             $data['finished'] = Auction::finished()->count();
-            $data['cities']   = getCities();
+            $data['cities'] = getCities();
 
             $data['routes'] = [
                 'auctions' => 'auctions',
-                'map'      => 'auctions.maps'
+                'map' => 'auctions.maps'
             ];
 
-            $query =  Auction::query();
+            $query = Auction::query();
 
-            if($type == 'current'){
-                $data['type']  = $type;
+            $category = null;
+            if ($slug) {
+                $category = AuctionCategory::where('slug', $slug)->firstOrFail();
+                $query->where('category_id', $category->id);
+                $data['category'] = $category;
+            }
+
+            if ($type == 'current') {
+                $data['type'] = $type;
                 $query = $query->current();
-            }
-
-            if($type == 'upcoming'){
-                $data['type']  = $type;
+            } elseif ($type == 'upcoming') {
+                $data['type'] = $type;
                 $query = $query->upcoming();
-            }
-
-            if($type == 'finished'){
-                $data['type']  = $type;
+            } elseif ($type == 'finished') {
+                $data['type'] = $type;
                 $query = $query->finished();
-            }
-
-            if($type == 'all'){
-                $data['type']  = $type;
+            } elseif ($type == 'all') {
+                $data['type'] = $type;
             }
 
             if ($request->filled('title')) {
-                $data['type']  = $type;
+                $data['type'] = $type;
                 $title = $request->input('title');
-                $query = $query->where('title', 'like', "%$title%")
-                                           ->orWhere('title_ar', 'like', "%$title%");
+                $query = $query->where(function ($q) use ($title) {
+                    $q->where('title', 'like', "%$title%")
+                        ->orWhere('title_ar', 'like', "%$title%");
+                });
             }
 
-
-            if ($request->filled('city_id')) {
-                if ($request->input('city_id') != 0) {
-                    $data['type'] = $type;
-                    $data['city_id'] = $request->input('city_id');
-                    $query = $query->where('city_id', $request->input('city_id'));
-                }
+            if ($request->filled('city_id') && $request->input('city_id') != 0) {
+                $data['type'] = $type;
+                $data['city_id'] = $request->input('city_id');
+                $query = $query->where('city_id', $request->input('city_id'));
             }
 
+            $query->ifNotPending();
 
-            $data['auctions'] = $query->ifNotPending()->paginate(10);
+            $data['auctions'] = $query->paginate(10);
 
+            $data['categories'] = AuctionCategory::where('status', 1)->get();
 
             return view('web.pages.auctions', $data);
-        } catch(Exception $e){
+        } catch (Exception $e) {
             return back();
         }
-
     }
 
     public function auctionDetails(Request $request, $slug)

@@ -10,6 +10,7 @@ use App\Traits\AuctionTrait;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auction\AuctionRequest;
+use App\Models\AuctionCategory;
 use App\Models\AuctionImage;
 
 class AuctionController extends Controller
@@ -53,7 +54,8 @@ class AuctionController extends Controller
         $short_countries = Country::orderByRaw('ISNULL(sort_order), sort_order')->with('city')->get();
         $countries = sortOrder($short_countries);
         $properties = Property::published()->select(['id','title', 'title_ar'])->get();
-        return view('admin.auction.create', compact( 'countries','properties'));
+        $categories = AuctionCategory::where('status', 1)->get();
+        return view('admin.auction.create', compact( 'countries','properties', 'categories'));
     }
 
 
@@ -132,9 +134,9 @@ class AuctionController extends Controller
             $auction_properties[] = $pro;
         }
 
+        $categories = AuctionCategory::where('status', 1)->get();
 
-
-        return view('admin.auction.edit', compact('auction', 'countries', 'images', 'auction_properties', 'properties'));
+        return view('admin.auction.edit', compact('auction', 'countries', 'images', 'auction_properties', 'properties', 'categories'));
     }
 
     public function update(AuctionRequest $request, $id)

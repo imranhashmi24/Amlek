@@ -1,0 +1,56 @@
+@extends('admin.layouts.app', ['title' => @$title])
+@section('panel')
+	<div class="card">
+		<div class="card-body">
+			<form action="{{ route('admin.auction-category.store') }}" method="post" enctype="multipart/form-data">
+				@csrf
+				<div class="row">
+					<div class="col-4">
+						<label class="form-label">@lang('Image') <span class="text-danger fs-6">*</span></label>
+						<x-image-uploader name="image" class="w-100" type="all_category" />
+					</div>
+					<div class="col-md-8">
+						<div class="mb-3 form-group">
+							<label class="form-label">@lang('Name') <span class="text-danger fs-6">*</span></label>
+							<input type="text" name="name" class="form-control" required value="{{ old('name') }}">
+						</div>
+
+						<div class="mb-3 form-group">
+							<label class="form-label">@lang('Name Ar') <span class="text-danger fs-6">*</span></label>
+							<input type="text" name="name_ar" class="form-control" required value="{{ old('name_ar') }}">
+						</div>
+
+						<div class="mb-3 form-group">
+							<label class="form-label">@lang('Status') <span class="text-danger fs-6">*</span></label>
+
+							<select class="form-control" name="status">
+								<option value="0" disabled>@lang('Select One')</option>
+								<option value="1" {{ old('status') == 1 ? 'selected' : '' }}>@lang('Active')</option>
+								<option value="0" {{ old('status') == 0 ? 'selected' : '' }}>@lang('Inactive')</option>
+							</select>
+						</div>
+
+						<div class="mb-3 form-group">
+							<button type="submit" class="btn btn-primary w-100">@lang('Submit')</button>
+						</div>
+
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</div>
+@endsection
+
+@push('breadcrumb-plugins')
+	<a href="{{ route('admin.auction-category.index') }}" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i>
+		@lang('Back')</a>
+@endpush
+
+@push('script')
+	<script>
+		$('.select2-basic').select2({
+			dropdownParent: $('.card-body')
+		});
+	</script>
+@endpush
