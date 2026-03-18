@@ -103,7 +103,7 @@
 		@endforeach
 	</div>
 
-	@include('sections.all_auction_section')
+	@include('sections.home_service')
 
 	<div class="container py-3 py-lg-3">
 		<div class="row">

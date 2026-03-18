@@ -481,3 +481,247 @@ if (!function_exists('deleteFile')) {
         return false;
     }
 }
+
+function fileDeleter($file, $location)
+{
+    $file = public_path($location . '/' . $file);
+    if (file_exists($file)) {
+        unlink($file);
+    }
+}
+
+
+
+
+if (!function_exists('getForm')) {
+    function getForm($service_id, $form_model, $form_model_id)
+    {
+
+        $forms = [];
+
+        if (!$form_model || !$form_model_id || !$service_id) {
+            return $forms;
+        }
+
+        $model = "App\Models\\" . $form_model;
+
+        $forms = $model::where($form_model_id, $service_id)->orderBy('position')->get();
+
+        if ($forms->isEmpty()) {
+            return $forms;
+        }
+
+        return view('frontend.form', compact('forms', 'service_id'));
+    }
+}
+
+
+if (!function_exists('base64urlEncode')) {
+    function base64urlEncode($string)
+    {
+        return rtrim(strtr(base64_encode($string), '+/', '-_'), '=');
+    }
+}
+
+if (!function_exists('base64urlDecode')) {
+    function base64urlDecode($string)
+    {
+        return base64_decode(strtr($string, '-_', '+/'));
+    }
+}
+
+if (!function_exists('requestTypes')) {
+    function requestTypes()
+    {
+        return [
+            [
+                'model' => 'FacilityService',
+                'name' => 'Facility Service Request',
+                'name_ar' => 'طلب خدمة',
+            ]
+        ];
+    }
+}
+
+
+
+/* get full name, email, phone number */
+
+if (!function_exists('getRequestOrderUserInfos')) {
+    function getRequestOrderUserInfos($orderInfoJson)
+    {
+        $orderInfo = json_decode($orderInfoJson, true);
+        $full_name = isset($orderInfo['full_name']) ? $orderInfo['full_name'] : (isset($orderInfo['name']) ? $orderInfo['name'] : 'N/A');
+        $email = isset($orderInfo['email_address']) ? $orderInfo['email_address'] : (isset($orderInfo['email']) ? $orderInfo['email'] : 'N/A');
+        $mobile = isset($orderInfo['mobile_number']) ? $orderInfo['mobile_number'] : (isset($orderInfo['phone']) ? $orderInfo['phone'] : 'N/A');
+
+        return [
+            $full_name,
+            $mobile,
+            $email,
+        ];
+    }
+}
+
+
+if (!function_exists('storeDefaultForm')) {
+    function storeDefaultForm($service_id, $model)
+    {
+        $forms = [
+            [
+                "name" => "Full Name",
+                "name_ar" => "الاسم الكامل",
+                "type" => "text",
+                "required" => "yes",
+                "placeholder" => "Type Here",
+                "placeholder_ar" => "اكتب هنا",
+                "options" => [],
+                "options_ar" => [],
+                "col" => 12,
+                "status" => "active"
+            ],
+            [
+                "name" => "Organization / Company",
+                "name_ar" => "المؤسسة / الشركة",
+                "type" => "text",
+                "required" => "yes",
+                "placeholder" => "Type Here",
+                "placeholder_ar" => "اكتب هنا",
+                "options" => [],
+                "options_ar" => [],
+                "col" => 12,
+                "status" => "active"
+            ],
+            [
+                "name" => "Mobile Number",
+                "name_ar" => "رقم الجوال",
+                "type" => "number",
+                "required" => "yes",
+                "placeholder" => "Type Here",
+                "placeholder_ar" => "اكتب هنا",
+                "options" => [],
+                "options_ar" => [],
+                "col" => 6,
+                "status" => "active"
+            ],
+            [
+                "name" => "Email Number",
+                "name_ar" => "البريد الإلكتروني",
+                "type" => "email",
+                "required" => "yes",
+                "placeholder" => "Type Here",
+                "placeholder_ar" => "اكتب هنا",
+                "options" => [],
+                "options_ar" => [],
+                "col" => 6,
+                "status" => "active"
+            ],
+            [
+                "name" => "City",
+                "name_ar" => "المدينة",
+                "type" => "text",
+                "required" => "yes",
+                "placeholder" => "Enter City",
+                "placeholder_ar" => "اختر المدينة",
+                "options" => [],
+                "options_ar" => [],
+                "col" => 6,
+                "status" => "active"
+            ],
+            [
+                "name" => "Quantity Required (per product)",
+                "name_ar" => "الكمية المطلوبة (لكل منتج)",
+                "type" => "number",
+                "required" => "yes",
+                "placeholder" => "Type Here",
+                "placeholder_ar" => "اكتب هنا",
+                "options" => [],
+                "options_ar" => [],
+                "col" => 6,
+                "status" => "active"
+            ],
+            [
+                "name" => "Expected Delivery Date",
+                "name_ar" => "تاريخ التسليم المتوقع",
+                "type" => "date",
+                "required" => "yes",
+                "placeholder" => "Select",
+                "placeholder_ar" => "اختر",
+                "options" => [],
+                "options_ar" => [],
+                "col" => 12,
+                "status" => "active"
+            ],
+            [
+                "name" => "Brief Description",
+                "name_ar" => "وصف مختصر",
+                "type" => "textarea",
+                "required" => "no",
+                "placeholder" => "Type Here (up to 200 words)",
+                "placeholder_ar" => "اكتب هنا (حتى 200 كلمة)",
+                "options" => [],
+                "options_ar" => [],
+                "col" => 12,
+                "status" => "active"
+            ],
+            [
+                "name" => "Attachments (if any)",
+                "name_ar" => "مرفقات (إذا وجدت)",
+                "type" => "file",
+                "required" => "no",
+                "placeholder" => "Upload file",
+                "placeholder_ar" => "تحميل ملف",
+                "options" => [],
+                "options_ar" => [],
+                "col" => 12,
+                "status" => "active"
+            ],
+            [
+                "name" => "Requested Products",
+                "name_ar" => "المنتجات المطلوبة",
+                "type" => "checkbox",
+                "required" => "yes",
+                "placeholder" => "",
+                "placeholder_ar" => "",
+                "options" => [
+                    "Standard Uniforms",
+                    "High-Visibility Clothing (Hi-Vis)",
+                    "Bulletproof Vests",
+                    "Weather-Resistant Tactical Boots",
+                    "Head Covers (Caps, Light Helmets)",
+                    "Raincoats & Harsh Weather Gear"
+                ],
+                "options_ar" => [
+                    "الزي الرسمي القياسي",
+                    "ملابس عالية الوضوح",
+                    "سترات واقية من الرصاص",
+                    "أحذية تكتيكية مقاومة للطقس",
+                    "أغطية الرأس (قبعات، خوذات خفيفة)",
+                    "معاطف المطر ومعدات الطقس القاسي"
+                ],
+                "col" => 12,
+                "status" => "active"
+            ]
+        ];
+
+        foreach ($forms as $form) {
+
+            $modelClass = "App\\Models\\" . $model;
+            $osform = new $modelClass;
+
+            $osform->service_id = $service_id;
+            $osform->name = $form['name'];
+            $osform->name_ar = $form['name_ar'];
+            $osform->type = $form['type'];
+            $osform->required = $form['required'];
+            $osform->placeholder = $form['placeholder'] ?? null;
+            $osform->placeholder_ar = $form['placeholder_ar'] ?? null;
+            $osform->options = $form['options'] ?? [];
+            $osform->options_ar = $form['options_ar'] ?? [];
+
+            $osform->col = $form['col'];
+            $osform->status = $form['status'];
+            $osform->save();
+        }
+    }
+}

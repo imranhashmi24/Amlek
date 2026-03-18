@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             // CitySeeder::class,
             //    PropertyTypeAreaSeeder::class,
 
-           // TemplateSeeder::class
+           // TemplateSeeder::class,
+           FacilityServiceSeeder::class
         ]);
 
     }

@@ -98,11 +98,15 @@ class FileInfo
             'path' => 'assets/admin/images/event_news',
             'size' => '400x400',
         ];
-          $data['ai_service'] = [
+        $data['ai_service'] = [
             'path' => 'assets/admin/images/ai_service',
             'size' => '400x400',
         ];
 
+        $data['facility_services'] = [
+            'path' => 'assets/admin/images/facility_services',
+            'size' => '400x400',
+        ];
 
         return $data;
     }

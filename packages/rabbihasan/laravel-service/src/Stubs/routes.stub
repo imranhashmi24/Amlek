@@ -1,0 +1,35 @@
+Route::middleware('admin')->group(function () {
+    Route::group(['prefix' => '{{route}}', 'as' => '{{route}}.'], function () {
+        Route::get('/', [{{namespace}}Controller::class, 'index'])->name('index');
+        Route::get('/create', [{{namespace}}Controller::class, 'create'])->name('create');
+        Route::post('/store/{id?}', [{{namespace}}Controller::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [{{namespace}}Controller::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [{{namespace}}Controller::class, 'update'])->name('update');        
+        Route::post('/status/{id}', [{{namespace}}Controller::class, 'status'])->name('status');
+        Route::post('/delete/{id}', [{{namespace}}Controller::class, 'destroy'])->name('delete');
+
+        //List
+        Route::group(['prefix' => 'lists', 'as' => 'lists.'], function () {
+            Route::get('/{service_id}', [{{namespace}}ListController::class, 'index'])->name('index');
+            Route::get('/create/{service_id}', [{{namespace}}ListController::class, 'create'])->name('create');
+            Route::post('/store/{service_id}', [{{namespace}}ListController::class, 'store'])->name('store');
+            Route::get('/edit/{service_id}/{id}', [{{namespace}}ListController::class, 'edit'])->name('edit');
+            Route::post('/update/{service_id}/{id}', [{{namespace}}ListController::class, 'update'])->name('update');
+            Route::post('/status/{service_id}/{id}', [{{namespace}}ListController::class, 'status'])->name('status');
+            Route::post('/delete/{service_id}/{id}', [{{namespace}}ListController::class, 'destroy'])->name('delete');
+        });
+
+        //Form
+        Route::group(['prefix' => 'forms', 'as' => 'forms.'], function () {
+            Route::get('/{service_id}', [{{namespace}}FormController::class, 'index'])->name('index');
+            Route::get('/create/{service_id}', [{{namespace}}FormController::class, 'create'])->name('create');
+            Route::post('/store/{service_id}', [{{namespace}}FormController::class, 'store'])->name('store');
+            Route::get('/edit/{service_id}/{id}', [{{namespace}}FormController::class, 'edit'])->name('edit');
+            Route::post('/update/{service_id}/{id}', [{{namespace}}FormController::class, 'update'])->name('update');
+            Route::post('/status/{service_id}/{id}', [{{namespace}}FormController::class, 'status'])->name('status');
+            Route::post('/delete/{service_id}/{id}', [{{namespace}}FormController::class, 'destroy'])->name('delete');
+        });
+    });
+});
+
+

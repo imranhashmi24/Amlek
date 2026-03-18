@@ -2,8 +2,17 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./packages/rabbihasan/laravel-service"
+        }
+    ],
     "require": {
         "php": "^8.1",
         "ezyang/htmlpurifier": "^4.17",
@@ -26,6 +35,7 @@
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.1",
+        "rabbihasan/laravel-service": "@dev",
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {

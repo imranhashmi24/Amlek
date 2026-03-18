@@ -17,6 +17,26 @@
 				<div class="menu-title">@lang('Dashboard')</div>
 			</a>
 		</li>
+
+		<li class="menu-label">@lang('Requests')</li>
+
+		<li class="sidebar--menu sidebar--dropdown {{ menuActive(['admin.request_order*']) }}">
+			<a href="javascript:;" class="has-arrow">
+				<div class="parent-icon"><i class="bi bi-globe-asia-australia"></i>
+				</div>
+				<div class="menu-title">@lang('Request')</div>
+			</a>
+			<ul>
+				@foreach (requestTypes() as $type)
+					<li class="{{ request()->is('admin/request_order/' . $type['model'] . '*') ? 'mm-active' : '' }}">
+						<a href="{{ route('admin.request_order.index', ['type' => $type['model']]) }}"><i class="bi bi-record-circle"></i>
+							{{ app()->getLocale() == 'ar' ? $type['name_ar'] : $type['name'] }}
+						</a>
+					</li>
+				@endforeach
+			</ul>
+		</li>
+
 		<li class="menu-label">@lang('Properties')</li>
 		<li
 			class="sidebar--menu {{ menuActive(['admin.property.type.index', 'admin.property.type.create', 'admin.property.type.edit']) }}">
@@ -212,6 +232,22 @@
 				</li>
 				<li class="{{ menuActive('admin.events.pending') }}">
 					<a href="{{ route('admin.events.pending') }}"><i class="bi bi-record-circle"></i>@lang('Pending Events')</a>
+				</li>
+			</ul>
+		</li>
+
+		<li class="menu-label">@lang('Facility Services')</li>
+
+		<li class="sidebar--menu sidebar--dropdown {{ menuActive('admin.facility_services*') }}">
+			<a href="javascript:;" class="has-arrow">
+				<div class="parent-icon"><i class="bi bi-house-gear"></i>
+				</div>
+				<div class="menu-title">@lang('Facility Services')</div>
+				<span class="red__notify"></span>
+			</a>
+			<ul>
+				<li class="{{ menuActive('admin.facility_services.index') }}">
+					<a href="{{ route('admin.facility_services.index') }}"><i class="bi bi-record-circle"></i>@lang('All Services')</a>
 				</li>
 			</ul>
 		</li>

@@ -20,6 +20,7 @@ use App\Models\Country;
 use App\Models\Event;
 use App\Models\EventAsk;
 use App\Models\EventNews;
+use App\Models\FacilityService;
 use App\Models\FinanceRequest;
 use App\Models\FloorPlanRequest;
 use App\Models\ForeignOwnershipRequest;
@@ -64,11 +65,7 @@ class WebController extends Controller
 
         $propertyTypes = PropertyType::Active()->get();
 
-        $categories = AuctionCategory::with(['auctions' => function($q) {
-            $q->latest()->limit(6); 
-        }])->get();
-
-        return view('web.home', compact('sections', 'propertyTypes', 'auctions', 'categories'));
+        return view('web.home', compact('sections', 'propertyTypes', 'auctions'));
     }
 
     public function contact()
@@ -148,6 +145,12 @@ class WebController extends Controller
 
         $sections = Page::where('slug', 'marketing')->first();
         return view('web.marketing', compact('sections'));
+    }
+    public function service()
+    {
+
+        $sections = Page::where('slug', 'service')->first();
+        return view('web.service', compact('sections'));
     }
 
     public function finance()
@@ -737,10 +740,12 @@ class WebController extends Controller
 
 
 
-    public function auctions(Request $request, $slug = null)
+    public function auctions(Request $request)
     {
         try {
+
             $type = $request->type ?? 'all';
+            $slug = $request->slug ?? null;
 
             $data['all'] = Auction::ifNotPending()->count();
             $data['current'] = Auction::current()->count();
@@ -756,6 +761,7 @@ class WebController extends Controller
             $query = Auction::query();
 
             $category = null;
+
             if ($slug) {
                 $category = AuctionCategory::where('slug', $slug)->firstOrFail();
                 $query->where('category_id', $category->id);
@@ -790,16 +796,36 @@ class WebController extends Controller
                 $query = $query->where('city_id', $request->input('city_id'));
             }
 
+            if ($request->filled('country_id') && $request->input('country_id') != 0) {
+                $data['type'] = $type;
+                $data['country_id'] = $request->input('country_id');
+                $query = $query->where('country_id', $request->input('country_id'));
+            }
+
             $query->ifNotPending();
 
             $data['auctions'] = $query->paginate(10);
 
             $data['categories'] = AuctionCategory::where('status', 1)->get();
 
+            $o_countries = Country::orderByRaw('ISNULL(sort_order), sort_order')->with('city')->get();
+            $countries = sortOrder($o_countries);
+            $data['countries'] = $countries;
+
             return view('web.pages.auctions', $data);
+
         } catch (Exception $e) {
             return back();
         }
+    }
+
+    public function auctionCategory()
+    {
+        $categories = AuctionCategory::with(['auctions' => function ($q) {
+            $q->latest()->limit(6);
+        }])->get();
+
+        return view('web.pages.auction_category', compact('categories'));
     }
 
     public function auctionDetails(Request $request, $slug)
@@ -1410,6 +1436,16 @@ class WebController extends Controller
         $notify[] = ['success', __('Foreign ownership application submitted successfully!')];
 
         return back()->withNotify($notify);
+    }
+
+
+    public function facilityServices(Request $request)
+    {
+        $sections = Page::where('slug', 'facility-services')->first();
+
+        $facilityServices = FacilityService::where('status', 'active')->latest()->get();
+
+        return view('web.pages.facility_services', compact('sections', 'facilityServices'));
     }
 }
 

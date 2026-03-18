@@ -39,7 +39,7 @@ class AuctionCategoryController extends Controller
         $auctionCategory = new AuctionCategory();
         $auctionCategory->name = $request->name;
         $auctionCategory->name_ar = $request->name_ar;
-        $auctionCategory->slug = Str::slug($request->slug) . rand(1000, 9999);
+        $auctionCategory->slug = Str::slug($request->name) . rand(1000, 9999);
         $auctionCategory->status = $request->status;
 
         if ($request->hasFile('image')) {
@@ -77,7 +77,7 @@ class AuctionCategoryController extends Controller
         $auctionCategory = AuctionCategory::findOrFail($id);
         $auctionCategory->name = $request->name;
         $auctionCategory->name_ar = $request->name_ar;
-        $auctionCategory->slug = Str::slug($request->slug) . rand(1000,9999);
+        $auctionCategory->slug = Str::slug($request->name) . rand(1000,9999);
         $auctionCategory->status = $request->status;
 
         if ($request->hasFile('image')) {

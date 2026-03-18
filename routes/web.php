@@ -2,14 +2,21 @@
 
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\SupportController;
-use App\Http\Controllers\WebController;
 use App\Http\Controllers\User\FavoriteController;
+use App\Http\Controllers\WebController;
+use App\Http\Controllers\WebRequestController;
 use Illuminate\Routing\RouteRegistrar;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/clear', function () {
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
     return back();
+});
+
+
+Route::controller(WebRequestController::class)->group(function () {
+    Route::get('facility-service-request', 'serviceRequest')->name('facility-service-request.index');
+    Route::post('facility-service-request-store', 'store')->name('facility-service-request.store');
 });
 
 // User Support Ticket
@@ -40,6 +47,8 @@ Route::controller(WebController::class)->group(function () {
 
     // service page
     Route::get('/marketing', 'marketing')->name('marketing');
+    Route::get('/service', 'service')->name('service');
+
     Route::get('finance', 'finance')->name('finance');
     Route::get('evaluation-and-studies', 'evaluation')->name('evaluation');
     Route::get('social-investment', 'investment')->name('investment');
@@ -70,7 +79,8 @@ Route::controller(WebController::class)->group(function () {
 
     // auction routes
 
-    Route::get('auctions', 'auctions')->name('auctions');
+    Route::get('auctions-category', 'auctions')->name('auctions');
+    Route::get('auctions', 'auctionCategory')->name('auction.category');
     Route::get('auction/details/{slug}', 'auctionDetails')->name('auction.details');
     Route::get('auctions-maps/{id?}', 'auctionMap')->name('auctions.maps');
 
@@ -88,6 +98,8 @@ Route::controller(WebController::class)->group(function () {
 
 
     Route::get('service-request', 'serviceRequest')->name('service.request');
+
+    Route::get('facility-services', 'facilityServices')->name('facility.services');
 
     Route::post('service-request', 'serviceRequestStore')->name('service.request.store');
     Route::post('social-service-request', 'socialServiceRequestStore')->name('social.service.request.store');

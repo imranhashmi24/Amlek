@@ -94,6 +94,45 @@
             "description_ar": "textarea-nic"
         }
     },
+    "our_core_services": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Our Core Services Section",
+        "content": {
+            "images": {
+                "image_top": {
+                    "size": "615x340"
+                },
+                "image_left": {
+                    "size": "615x340"
+                },
+                "image_right": {
+                    "size": "615x340"
+                }
+            },
+            "title": "text",
+            "title_ar": "text",
+            "description": "textarea-nic",
+            "description_ar": "textarea-nic"
+        }
+    },
+    "mission_vision": {
+        "builder": true,
+        "no_selection": false,
+        "name": "Our Mission Vision Section",
+        "element": {
+            "images": {
+                "image": {
+                    "size": "120x120"
+                }
+            },
+            "heading": "text",
+            "heading_ar": "text",
+            "title": "text",
+            "title_ar": "text",
+            "modal": true
+        }
+    },
     "blog": {
         "builder": true,
         "no_selection": false,
@@ -143,7 +182,6 @@
             "modal": false
         }
     },
-
     "offer_banner": {
         "builder": true,
         "no_selection": true,
@@ -425,8 +463,8 @@
                     "size": "500x350"
                 }
             },
-            "short_description" : "textarea",
-            "short_description_ar" : "textarea",
+            "short_description": "textarea",
+            "short_description_ar": "textarea",
             "modal": false
         }
     },
@@ -604,7 +642,7 @@
         "element": {
             "images": {
                 "plan": {
-                    "size" : "315x180"
+                    "size": "315x180"
                 }
             },
             "title": "text",
@@ -625,7 +663,7 @@
         "element": {
             "images": {
                 "image": {
-                    "size" : "315x180"
+                    "size": "315x180"
                 }
             },
             "title": "text",
@@ -707,7 +745,7 @@
             "title_ar": "text"
         }
     },
-     "foreign_ownership_banner": {
+    "foreign_ownership_banner": {
         "builder": true,
         "no_selection": true,
         "name": "Foreign Ownership Banner",

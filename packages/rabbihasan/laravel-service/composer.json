@@ -1,0 +1,17 @@
+{
+    "name": "rabbihasan/laravel-service",
+    "description": "Dynamic Service CRUD Generator for Laravel",
+    "autoload": {
+      "psr-4": {
+        "Rabbihasan\\LaravelService\\": "src/"
+      }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "Rabbihasan\\LaravelService\\LaravelServiceServiceProvider"
+        ]
+      }
+    }
+}
+  

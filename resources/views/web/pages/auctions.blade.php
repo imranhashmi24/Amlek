@@ -10,39 +10,33 @@
 
 	<section class="auction-filter">
 		<div class="container">
-			<form action="{{ route($routes['auctions'], ['slug' => $category->slug ?? null]) }}" method="GET">
-				<input type="hidden" name="type" value="{{ $type ?? 'all' }}">
+			<form action="{{ route($routes['auctions']) }}" method="GET">
+				<input type="hidden" name="slug" value="{{ $category->slug ?? null }}">
 
 				<div class="row g-3 align-items-center">
-					<div class="col-md">
-						<select name="category_id" class="form-select custom-select">
-							<option value="">@lang('Auction Category')</option>
-							@foreach ($categories ?? [] as $cat)
-								<option value="{{ $cat->id }}" @selected(request('category_id') == $cat->id)>
-									{{ app()->getLocale() == 'en' ? $cat->name : $cat->name_ar }}
-								</option>
-							@endforeach
-						</select>
-					</div>
 
 					<div class="col-md">
 						<select name="condition" class="form-select custom-select">
 							<option value="">@lang('Condition')</option>
-							{{-- Populate with actual conditions if needed --}}
+							<option value="new" @selected(request('condition') == 'new')>@lang('New')</option>
+							<option value="used" @selected(request('condition') == 'used')>@lang('Used')</option>
 						</select>
 					</div>
 
 					<div class="col-md">
 						<select name="brand" class="form-select custom-select">
 							<option value="">@lang('Brand')</option>
-							{{-- Populate with brands if needed --}}
+							<option value="new" @selected(request('brand') == 'new')>@lang('New')</option>
+							<option value="used" @selected(request('brand') == 'used')>@lang('Used')</option>
 						</select>
 					</div>
 
 					<div class="col-md">
 						<select name="year" class="form-select custom-select">
 							<option value="">@lang('Year')</option>
-							{{-- Populate with years if needed --}}
+							@for ($i = 2000; $i < 2050; $i++)
+								<option value="{{ $i }}">@lang($i)</option>
+							@endfor
 						</select>
 					</div>
 
@@ -132,7 +126,7 @@
 				@endforelse
 			</div>
 
-			<div class="mt-4">
+			<div class="my-4">
 				{{ $auctions->appends(request()->query())->links() }}
 			</div>
 		</div>

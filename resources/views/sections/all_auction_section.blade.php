@@ -43,15 +43,20 @@
 									</div>
 
 									<div class="card-info">
-										<h6 class="card-title">{{ Str::limit($auction->title, 60) }}</h6>
+										<h6 class="card-title">
+											{{ Str::limit(app()->getLocale() == 'ar' ? $auction->title_ar : $auction->title_en, 60) }}
+										</h6>
 
 										<div class="card-features">
 											@if ($auction->inspection ?? false)
-												<div class="feature-item"><i class="bi bi-shield-check"></i> @lang('Comprehensive Inspection')</div>
+												<div class="feature-item"><i class="bi bi-shield-check"></i>
+													@lang('Comprehensive Inspection')</div>
 											@endif
-											<div class="feature-item"><i class="bi bi-geo-alt"></i> {{ optional($auction->city)->name ?? __('Unknown') }}
+											<div class="feature-item"><i class="bi bi-geo-alt"></i>
+												{{ optional($auction->city)->name ?? __('Unknown') }}
 											</div>
-											<div class="feature-item"><i class="bi bi-clock-history"></i> @lang('Live Bidding')</div>
+											<div class="feature-item"><i class="bi bi-clock-history"></i>
+												@lang('Live Bidding')</div>
 										</div>
 
 										<div class="card-footer-box">
@@ -172,7 +177,6 @@
 		.card-img-wrap img {
 			width: 100%;
 			height: 180px;
-			object-fit: contain;
 			padding: 15px;
 		}
 

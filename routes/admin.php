@@ -41,6 +41,7 @@ use App\Http\Controllers\Admin\Request\AuctionFormRequestController;
 use App\Http\Controllers\Admin\Request\FloorPlanRequestController;
 use App\Http\Controllers\Admin\Request\OportunityRequestController;
 use App\Http\Controllers\Admin\Request\PropertyFormRequestController;
+use App\Http\Controllers\Admin\RequestOrderController;
 use App\Http\Controllers\Admin\ServiceContentController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ServiceRequestController;
@@ -576,4 +577,50 @@ Route::middleware('admin')->group(function () {
         Route::get('/status/{id}/{status}', [App\Http\Controllers\Admin\Request\ForeignOwnerRequestController::class, 'status'])->name('status');
         Route::get('/show/{id}', [App\Http\Controllers\Admin\Request\ForeignOwnerRequestController::class, 'show'])->name('show');
     });
+
+
+    Route::group(['prefix' => 'request-order', 'as' => 'request_order.'], function () {
+        Route::get('/', [RequestOrderController::class, 'index'])->name('index');
+        Route::get('/show/{id}', [RequestOrderController::class, 'show'])->name('show');
+        Route::post('/update/{id}', [RequestOrderController::class, 'update'])->name('update');
+        Route::post('/status/{id}', [RequestOrderController::class, 'status'])->name('status');
+        Route::post('/delete/{id}', [RequestOrderController::class, 'destroy'])->name('delete');
+    });
 });
+
+Route::middleware('admin')->group(function () {
+    Route::group(['prefix' => 'facility_services', 'as' => 'facility_services.'], function () {
+        Route::get('/', [App\Http\Controllers\Admin\FacilityService\FacilityServiceController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Admin\FacilityService\FacilityServiceController::class, 'create'])->name('create');
+        Route::post('/store/{id?}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceController::class, 'update'])->name('update');        
+        Route::post('/status/{id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceController::class, 'status'])->name('status');
+        Route::post('/delete/{id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceController::class, 'destroy'])->name('delete');
+
+        //List
+        Route::group(['prefix' => 'lists', 'as' => 'lists.'], function () {
+            Route::get('/{service_id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceListController::class, 'index'])->name('index');
+            Route::get('/create/{service_id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceListController::class, 'create'])->name('create');
+            Route::post('/store/{service_id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceListController::class, 'store'])->name('store');
+            Route::get('/edit/{service_id}/{id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceListController::class, 'edit'])->name('edit');
+            Route::post('/update/{service_id}/{id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceListController::class, 'update'])->name('update');
+            Route::post('/status/{service_id}/{id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceListController::class, 'status'])->name('status');
+            Route::post('/delete/{service_id}/{id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceListController::class, 'destroy'])->name('delete');
+        });
+
+        //Form
+        Route::group(['prefix' => 'forms', 'as' => 'forms.'], function () {
+            Route::get('/{service_id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceFormController::class, 'index'])->name('index');
+            Route::get('/create/{service_id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceFormController::class, 'create'])->name('create');
+            Route::post('/store/{service_id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceFormController::class, 'store'])->name('store');
+            Route::get('/edit/{service_id}/{id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceFormController::class, 'edit'])->name('edit');
+            Route::post('/update/{service_id}/{id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceFormController::class, 'update'])->name('update');
+            Route::post('/status/{service_id}/{id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceFormController::class, 'status'])->name('status');
+            Route::post('/delete/{service_id}/{id}', [App\Http\Controllers\Admin\FacilityService\FacilityServiceFormController::class, 'destroy'])->name('delete');
+            Route::post('/reorder', [App\Http\Controllers\Admin\FacilityService\FacilityServiceFormController::class, 'reorder'])->name('reorder');
+        });
+    });
+});
+
+

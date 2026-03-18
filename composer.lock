@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "546dab715845ca607b61bea3d4079bbf",
+    "content-hash": "6fcf1e91d54152b4b6ab6357e236b8af",
     "packages": [
         {
             "name": "brick/math",
@@ -9103,6 +9103,32 @@
             "time": "2026-01-27T05:48:37+00:00"
         },
         {
+            "name": "rabbihasan/laravel-service",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./packages/rabbihasan/laravel-service",
+                "reference": "0443049ff85b500c51bec31199c77abb4e5a0ba3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rabbihasan\\LaravelService\\LaravelServiceServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rabbihasan\\LaravelService\\": "src/"
+                }
+            },
+            "description": "Dynamic Service CRUD Generator for Laravel",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "sebastian/cli-parser",
             "version": "2.0.1",
             "source": {
@@ -10565,7 +10591,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "rabbihasan/laravel-service": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
